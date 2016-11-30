@@ -5,8 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ch.hsr.wpf.gadgeothek.app"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="Gadgeothek Admin" Height="450" Width="900" MinHeight="30" MinWidth="600">
     <Grid>
-        
+        <TabControl>
+            <TabItem Header="Gadgets">
+                <Label Content="Content goes here..." />
+            </TabItem>
+            <TabItem Header="Rentals">
+                <Label Content="Content 2 goes here..." />
+            </TabItem>
+        </TabControl>
     </Grid>
 </Window>
