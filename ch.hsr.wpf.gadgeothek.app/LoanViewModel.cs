@@ -23,7 +23,7 @@ namespace ch.hsr.wpf.gadgeothek.app
 
         public string Gadget
         {
-            get { return String.Format("0:0.2", _loan.Gadget.Price); }
+            get { return _loan.Gadget.Name; }
         }
 
         public DateTime? PickupDate {
