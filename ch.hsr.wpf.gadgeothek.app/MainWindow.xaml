@@ -1,9 +1,10 @@
-﻿<Window x:Class="ch.hsr.wpf.gadgeothek.app.MainWindow"
+﻿<Controls:MetroWindow x:Class="ch.hsr.wpf.gadgeothek.app.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ch.hsr.wpf.gadgeothek.app"
+        xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
         mc:Ignorable="d"
         Title="Gadgeothek Admin" Height="450" Width="900" MinHeight="30" MinWidth="600">
     <Grid>
@@ -16,4 +17,4 @@
             </TabItem>
         </TabControl>
     </Grid>
-</Window>
+</Controls:MetroWindow>
