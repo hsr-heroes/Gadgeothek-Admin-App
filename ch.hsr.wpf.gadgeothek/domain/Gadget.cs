@@ -5,9 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using PropertyChanged;
 
 namespace ch.hsr.wpf.gadgeothek.domain
 {
+    [ImplementPropertyChanged]
     public class Gadget
     {
 
