@@ -1,0 +1,18 @@
+﻿<Controls:MetroWindow x:Class="ch.hsr.wpf.gadgeothek.app.AddEditGadget"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
+        xmlns:local="clr-namespace:ch.hsr.wpf.gadgeothek.app"
+        mc:Ignorable="d"
+        Title="Add/Edit Gadget" Height="300" Width="300">
+    <Grid>
+        <StackPanel Orientation="Vertical" >
+            <StackPanel Orientation="Horizontal" >
+                <Button x:Name="bSaveGadget" Content="Save" HorizontalAlignment="Left" VerticalAlignment="Bottom" />
+                <Button x:Name="bCancelGadget" Content="Cancel" HorizontalAlignment="Left" VerticalAlignment="Bottom" />
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Controls:MetroWindow>
