@@ -10,11 +10,21 @@
     <Grid>
         <TabControl>
             <TabItem Header="Gadgets">
-                <Label Content="Content goes here..." />
+                <StackPanel Orientation="Vertical" >
+                    <DataGrid ItemsSource="{Binding GadgetList}" >
+                    </DataGrid>
+                    <StackPanel Orientation="Horizontal" >
+                        <Button x:Name="bAddGadget" Content="Add" HorizontalAlignment="Left" VerticalAlignment="Bottom" />
+                        <Button x:Name="bEditGadget" Content="Edit" HorizontalAlignment="Left" VerticalAlignment="Bottom" />
+                        <Button x:Name="bDeleteGadget" Content="Delete" HorizontalAlignment="Left" VerticalAlignment="Bottom" />
+                    </StackPanel>
+                </StackPanel>
             </TabItem>
-            <TabItem Header="Rentals">
-                <Label Content="Content 2 goes here..." />
+            <TabItem Header="Loans">
+                <DataGrid ItemsSource="{Binding LoanList}" >
+                </DataGrid>
             </TabItem>
         </TabControl>
+
     </Grid>
 </Controls:MetroWindow>
