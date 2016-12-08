@@ -9,9 +9,36 @@
         Title="Add/Edit Gadget" Height="300" Width="300">
     <Grid>
         <StackPanel Orientation="Vertical" >
+            <Grid Grid.Column="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="150" />
+                    <ColumnDefinition Width="150" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <Label Grid.Row="1">Inventory Number</Label>
+                <Label Grid.Row="2">Name</Label>
+                <Label Grid.Row="3">Manufacturer</Label>
+                <Label Grid.Row="4">Price</Label>
+                <Label Grid.Row="5">Condition</Label>
+
+                <TextBox Grid.Column="1" Grid.Row="1" Text="{Binding Gadget.InventoryNumber}" IsReadOnly="True" />
+                <TextBox Grid.Column="1" Grid.Row="2" Text="{Binding Gadget.Name}" />
+                <TextBox Grid.Column="1" Grid.Row="3" Text="{Binding Gadget.Manufacturer}" />
+                <TextBox Grid.Column="1" Grid.Row="4" Text="{Binding Gadget.Price}" />
+                <TextBox Grid.Column="1" Grid.Row="5" Name="ConditionComboBox"/>
+            </Grid>
             <StackPanel Orientation="Horizontal" >
-                <Button x:Name="bSaveGadget" Content="Save" HorizontalAlignment="Left" VerticalAlignment="Bottom" />
-                <Button x:Name="bCancelGadget" Content="Cancel" HorizontalAlignment="Left" VerticalAlignment="Bottom" />
+                <Button x:Name="bSaveGadget" Content="Save" HorizontalAlignment="Left" VerticalAlignment="Bottom" Click="bSaveGadget_Click" />
+                <Button x:Name="bCancelGadget" Content="Cancel" HorizontalAlignment="Left" VerticalAlignment="Bottom" IsCancel="True" />
             </StackPanel>
         </StackPanel>
     </Grid>
