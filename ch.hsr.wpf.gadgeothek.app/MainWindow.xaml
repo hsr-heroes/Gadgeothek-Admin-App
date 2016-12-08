@@ -11,17 +11,48 @@
         <TabControl>
             <TabItem Header="Gadgets">
                 <StackPanel Orientation="Vertical" >
-                    <DataGrid ItemsSource="{Binding GadgetList}" >
+                    <DataGrid Name="GadgetGrid"  ItemsSource="{Binding GadgetViewModel.Gadgets}" AutoGenerateColumns="False" IsReadOnly="True">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="InvNr." Binding="{Binding InventoryNumber}" Width="1*" SortDirection="Ascending"/>
+                            <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="3*"/>
+                            <DataGridTextColumn Header="Manufacturer" Binding="{Binding Manufacturer}" Width="3*"/>
+                            <DataGridTextColumn Header="Price" Binding="{Binding Price}" Width="2*"/>
+                            <DataGridTextColumn Header="Condition" Binding="{Binding Condition}" Width="2*"/>
+                        </DataGrid.Columns>
                     </DataGrid>
                     <StackPanel Orientation="Horizontal" >
-                        <Button x:Name="bAddGadget" Content="Add" HorizontalAlignment="Left" VerticalAlignment="Bottom" />
-                        <Button x:Name="bEditGadget" Content="Edit" HorizontalAlignment="Left" VerticalAlignment="Bottom" />
-                        <Button x:Name="bDeleteGadget" Content="Delete" HorizontalAlignment="Left" VerticalAlignment="Bottom" />
+                        <Button x:Name="bAddGadget" Content="Add" HorizontalAlignment="Left" VerticalAlignment="Bottom" Click="bAddGadget_Click" />
+                        <Button x:Name="bEditGadget" Content="Edit" HorizontalAlignment="Left" VerticalAlignment="Bottom" 
+                                Click="bEditGadget_Click" IsEnabled="{Binding ElementName=GadgetGrid, Path=SelectedItems.Count}" />
+                        <Button x:Name="bDeleteGadget" Content="Delete" HorizontalAlignment="Left" VerticalAlignment="Bottom" 
+                                Click="bDeleteGadget_Click" IsEnabled="{Binding ElementName=GadgetGrid, Path=SelectedItems.Count}" />
                     </StackPanel>
                 </StackPanel>
             </TabItem>
             <TabItem Header="Loans">
-                <DataGrid ItemsSource="{Binding LoanList}" >
+                <DataGrid Name="LoanGrid" ItemsSource="{Binding LoanViewModel.Loans}" AutoGenerateColumns="False" IsReadOnly="True" >
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="1*"/>
+                        <DataGridTextColumn Header="Customer" Width="5*" SortMemberPath="Customer.Name">
+                            <DataGridTextColumn.Binding>
+                                <MultiBinding StringFormat="{}{0} ({1})">
+                                    <Binding Path="Customer.Name" />
+                                    <Binding Path="Customer.Email" />
+                                </MultiBinding>
+                            </DataGridTextColumn.Binding>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Header="Gadget" Width="5*" SortMemberPath="Gadget.Name">
+                            <DataGridTextColumn.Binding>
+                                <MultiBinding StringFormat="{}{0} ({1})">
+                                    <Binding Path="Gadget.Name" />
+                                    <Binding Path="Gadget.Manufacturer" />
+                                </MultiBinding>
+                            </DataGridTextColumn.Binding>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Header="Pickup Date" Binding="{Binding PickupDate}" Width="4*" />
+                        <DataGridTextColumn Header="Return Date" Binding="{Binding ReturnDate}" Width="4*" />
+                        <DataGridTextColumn Header="Overdue Date" Binding="{Binding OverDueDate}" Width="4*" />
+                    </DataGrid.Columns>
                 </DataGrid>
             </TabItem>
         </TabControl>

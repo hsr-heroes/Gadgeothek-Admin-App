@@ -1,40 +1,25 @@
 ﻿using ch.hsr.wpf.gadgeothek.domain;
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Windows.Input;
 
 namespace ch.hsr.wpf.gadgeothek.app
 {
     public class GadgetViewModel
     {
+        public static ObservableCollection<Gadget> Gadgets { get; set; }
+        public ICommand DeleteGadgetCommand { get; internal set; }
+
         public GadgetViewModel()
         {
-            _gadget = new Gadget("iPhone 7");
-            _gadget.Manufacturer = "Apple";
-            _gadget.Price = 999.99;
-        }
-        Gadget _gadget;
-
-        public string InventoryNumber
-        {
-            get { return _gadget.InventoryNumber; }
+            ReloadGadgetList();
         }
 
-        public Condition Condition
+        public static void ReloadGadgetList()
         {
-            get { return _gadget.Condition; }
-        }
-
-        public double Price
-        {
-            get { return _gadget.Price; }
-        }
-
-        public string Manufacturer
-        {
-            get { return _gadget.Manufacturer; }
-        }
-
-        public string Name
-        {
-            get { return _gadget.Name; }
+            List<Gadget> list = MainWindow.Service.GetAllGadgets();
+            Gadgets = new ObservableCollection<Gadget>(list);
         }
     }
 }

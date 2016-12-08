@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using MahApps.Metro.Controls;
 using ch.hsr.wpf.gadgeothek.domain;
 using System.Collections.ObjectModel;
+using ch.hsr.wpf.gadgeothek.service;
 
 namespace ch.hsr.wpf.gadgeothek.app
 {
@@ -23,21 +24,48 @@ namespace ch.hsr.wpf.gadgeothek.app
     /// </summary>
     public partial class MainWindow : MetroWindow
     {
-        public ObservableCollection<GadgetViewModel> GadgetList { get; set; }
-        public ObservableCollection<LoanViewModel> LoanList { get; set; }
+        public GadgetViewModel GadgetViewModel { get; set; }
+        public LoanViewModel LoanViewModel { get; set; }
+
+        public static LibraryAdminService Service;
 
         public MainWindow()
         {
             InitializeComponent();
 
-            List<GadgetViewModel> gadgets = new List<GadgetViewModel>();
-            gadgets.Add(new GadgetViewModel());
-            GadgetList = new ObservableCollection<GadgetViewModel>(gadgets);
-            List<LoanViewModel> loans = new List<LoanViewModel>();
-            loans.Add(new LoanViewModel());
-            LoanList = new ObservableCollection<LoanViewModel>(loans);
-
+            Service = new LibraryAdminService("http://mge5.dev.ifs.hsr.ch/");
+            GadgetViewModel = new GadgetViewModel();
+            LoanViewModel = new LoanViewModel();
             DataContext = this;
+        }
+
+        private void bAddGadget_Click(object sender, RoutedEventArgs e)
+        {
+            var win = new AddEditGadget(new Gadget());
+            win.ShowDialog();
+        }
+
+        private void bEditGadget_Click(object sender, RoutedEventArgs e)
+        {
+            Gadget gadget = (Gadget)GadgetGrid.SelectedItem;
+            var win = new AddEditGadget((Gadget)GadgetGrid.SelectedItem);
+            win.ShowDialog();
+        }
+
+        private void bDeleteGadget_Click(object sender, RoutedEventArgs e)
+        {
+            Gadget gadget = (Gadget)GadgetGrid.SelectedItem;
+            MessageBoxResult messageBoxResult = MessageBox.Show(String.Format("Are you sure you want delete this gadget:\n{0} ({1})", gadget.Name, gadget.Manufacturer), "Delete Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (messageBoxResult == MessageBoxResult.Yes)
+            {
+                if (Service.DeleteGadget(gadget))
+                {
+                    GadgetViewModel.Gadgets.Remove(gadget);
+                } else
+                {
+                    messageBoxResult = MessageBox.Show("Could not delete selected gadget.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
         }
     }
 }

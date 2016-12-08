@@ -10,7 +10,7 @@ using PropertyChanged;
 namespace ch.hsr.wpf.gadgeothek.domain
 {
     [ImplementPropertyChanged]
-    public class Gadget
+    public class Gadget : ICloneable
     {
 
         public string InventoryNumber { get; set; }
@@ -66,6 +66,11 @@ namespace ch.hsr.wpf.gadgeothek.domain
         public string FullDescription()
         {
             return $"{Name} [{InventoryNumber}] by {Manufacturer} - Condition: {Condition.ToString().ToUpper()}";
+        }
+
+        public object Clone()
+        {
+            return (Gadget)this.MemberwiseClone();
         }
     }
 
