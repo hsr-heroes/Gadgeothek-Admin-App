@@ -6,7 +6,9 @@
         xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
         xmlns:local="clr-namespace:ch.hsr.wpf.gadgeothek.app"
         mc:Ignorable="d"
-        Title="Add/Edit Gadget" Height="300" Width="300">
+        Title="Add/Edit Gadget" Height="300" Width="300"
+        GlowBrush="{DynamicResource AccentColorBrush}"
+        WindowStartupLocation="CenterScreen" >
     <Grid>
         <StackPanel Orientation="Vertical" >
             <Grid Grid.Column="3">
@@ -30,11 +32,11 @@
                 <Label Grid.Row="4">Price</Label>
                 <Label Grid.Row="5">Condition</Label>
 
-                <TextBox Grid.Column="1" Grid.Row="1" Text="{Binding Gadget.InventoryNumber}" IsReadOnly="True" />
-                <TextBox Grid.Column="1" Grid.Row="2" Text="{Binding Gadget.Name}" />
-                <TextBox Grid.Column="1" Grid.Row="3" Text="{Binding Gadget.Manufacturer}" />
+                <Label Grid.Column="1" Grid.Row="1" Content="{Binding Gadget.InventoryNumber}" />
+                <TextBox Grid.Column="1" Grid.Row="2" Text="{Binding Gadget.Name}" Controls:TextBoxHelper.Watermark="e.g. Galaxy S7" />
+                <TextBox Grid.Column="1" Grid.Row="3" Text="{Binding Gadget.Manufacturer}" Controls:TextBoxHelper.Watermark="Samsung" />
                 <TextBox Grid.Column="1" Grid.Row="4" Text="{Binding Gadget.Price}" />
-                <TextBox Grid.Column="1" Grid.Row="5" Name="ConditionComboBox"/>
+                <TextBox Grid.Column="1" Grid.Row="5" Name="ConditionComboBox" />
             </Grid>
             <StackPanel Orientation="Horizontal" >
                 <Button x:Name="bSaveGadget" Content="Save" HorizontalAlignment="Left" VerticalAlignment="Bottom" Click="bSaveGadget_Click" />

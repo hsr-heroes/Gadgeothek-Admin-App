@@ -6,7 +6,9 @@
         xmlns:local="clr-namespace:ch.hsr.wpf.gadgeothek.app"
         xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
         mc:Ignorable="d"
-        Title="Gadgeothek Admin" Height="450" Width="900" MinHeight="30" MinWidth="600">
+        Title="Gadgeothek Admin" Height="450" Width="900" MinHeight="30" MinWidth="600"
+        GlowBrush="{DynamicResource AccentColorBrush}"
+        WindowStartupLocation="CenterScreen" >
     <Grid>
         <TabControl>
             <TabItem Header="Gadgets">
