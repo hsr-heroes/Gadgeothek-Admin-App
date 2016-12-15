@@ -21,52 +21,13 @@ namespace ch.hsr.wpf.gadgeothek.app
     /// </summary>
     public partial class AddEditGadget : MetroWindow
     {
-        public Gadget OriginalGadget { get; set; }
-        public Gadget Gadget { get; set; }
-        private bool IsNew { get; set; }
-        private int MaxID { get; set; }
+        public AddEditViewModel AddEditViewModel { get; set; }
 
         public AddEditGadget(Gadget gadget)
         {
             InitializeComponent();
-            OriginalGadget = gadget;
-            Gadget = (Gadget) OriginalGadget.Clone();
-            IsNew = (Gadget.InventoryNumber == null);
-            DataContext = this;
+            AddEditViewModel = new AddEditViewModel(gadget);
+            DataContext = AddEditViewModel;
         }
-
-        private void bSaveGadget_Click(object sender, RoutedEventArgs e)
-        {
-            if (IsNew)
-            {
-                Gadget.InventoryNumber = GetNewGadgetID();
-                if (MainWindow.Service.AddGadget(Gadget))
-                {
-                    GadgetViewModel.Gadgets.Add(Gadget);
-                } else
-                {
-                    MessageBoxResult messageBoxResult = MessageBox.Show("Could not add this gadget.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
-            } else
-            {
-                if(MainWindow.Service.UpdateGadget(Gadget))
-                {
-                    OriginalGadget.Name = Gadget.Name;
-                    OriginalGadget.Manufacturer = Gadget.Manufacturer;
-                    OriginalGadget.Price = Gadget.Price;
-                    OriginalGadget.Condition = Gadget.Condition;
-                } else
-                {
-                    MessageBoxResult messageBoxResult = MessageBox.Show("Could not update selected gadget.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
-            }
-            DialogResult = true;
-        }
-
-        private string GetNewGadgetID()
-        {
-            return (GadgetViewModel.Gadgets.Max(x => x.InventoryNumber != null ? Int32.Parse(x.InventoryNumber) : 0) + 1).ToString();
-        }
-
     }
 }

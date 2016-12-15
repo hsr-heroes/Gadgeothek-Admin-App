@@ -63,6 +63,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AddEditViewModel.cs" />
     <Compile Include="RelayCommand.cs" />
     <Page Include="AddEditGadget.xaml">
       <SubType>Designer</SubType>

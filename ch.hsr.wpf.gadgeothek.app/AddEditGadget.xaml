@@ -5,10 +5,21 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
         xmlns:local="clr-namespace:ch.hsr.wpf.gadgeothek.app"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        xmlns:dom="clr-namespace:ch.hsr.wpf.gadgeothek.domain;assembly=ch.hsr.wpf.gadgeothek"
         mc:Ignorable="d"
+        x:Name="AddEditWindow"
         Title="Add/Edit Gadget" Height="300" Width="300"
         GlowBrush="{DynamicResource AccentColorBrush}"
         WindowStartupLocation="CenterScreen" >
+    <Window.Resources>
+        <ObjectDataProvider x:Key="conditions"
+       MethodName="GetValues" ObjectType="{x:Type sys:Enum}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="dom:Condition"/>
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+    </Window.Resources>
     <Grid>
         <StackPanel Orientation="Vertical" >
             <Grid Grid.Column="3">
@@ -36,10 +47,11 @@
                 <TextBox Grid.Column="1" Grid.Row="2" Text="{Binding Gadget.Name}" Controls:TextBoxHelper.Watermark="e.g. Galaxy S7" />
                 <TextBox Grid.Column="1" Grid.Row="3" Text="{Binding Gadget.Manufacturer}" Controls:TextBoxHelper.Watermark="Samsung" />
                 <TextBox Grid.Column="1" Grid.Row="4" Text="{Binding Gadget.Price}" />
-                <TextBox Grid.Column="1" Grid.Row="5" Name="ConditionComboBox" />
+                <ComboBox Grid.Column="1" Grid.Row="5" Name="ConditionComboBox" Margin="5" HorizontalAlignment="Stretch" SelectedIndex="0" ItemsSource="{Binding Source={StaticResource conditions}}" />
             </Grid>
             <StackPanel Orientation="Horizontal" >
-                <Button x:Name="bSaveGadget" Content="Save" HorizontalAlignment="Left" VerticalAlignment="Bottom" Click="bSaveGadget_Click" />
+                <Button x:Name="bSaveGadget" Content="Save" HorizontalAlignment="Left" VerticalAlignment="Bottom"
+                        Command="{Binding SaveCommand}" CommandParameter="{Binding ElementName=AddEditWindow}" />
                 <Button x:Name="bCancelGadget" Content="Cancel" HorizontalAlignment="Left" VerticalAlignment="Bottom" IsCancel="True" />
             </StackPanel>
         </StackPanel>
