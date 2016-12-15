@@ -13,7 +13,7 @@
         <TabControl>
             <TabItem Header="Gadgets">
                 <StackPanel Orientation="Vertical" >
-                    <DataGrid Name="GadgetGrid"  ItemsSource="{Binding GadgetViewModel.Gadgets}" AutoGenerateColumns="False" IsReadOnly="True">
+                    <DataGrid Name="GadgetGrid"  ItemsSource="{Binding Gadgets}" AutoGenerateColumns="False" IsReadOnly="True">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="InvNr." Binding="{Binding InventoryNumber}" Width="1*" SortDirection="Ascending"/>
                             <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="3*"/>
@@ -23,16 +23,19 @@
                         </DataGrid.Columns>
                     </DataGrid>
                     <StackPanel Orientation="Horizontal" >
-                        <Button x:Name="bAddGadget" Content="Add" HorizontalAlignment="Left" VerticalAlignment="Bottom" Click="bAddGadget_Click" />
+                        <Button x:Name="bAddGadget" Content="Add" HorizontalAlignment="Left" VerticalAlignment="Bottom"
+                                Command="{Binding AddCommand}" />
                         <Button x:Name="bEditGadget" Content="Edit" HorizontalAlignment="Left" VerticalAlignment="Bottom" 
-                                Click="bEditGadget_Click" IsEnabled="{Binding ElementName=GadgetGrid, Path=SelectedItems.Count}" />
+                                Command="{Binding EditCommand}" CommandParameter="{Binding ElementName=GadgetGrid, Path=SelectedItem}"
+                                IsEnabled="{Binding ElementName=GadgetGrid, Path=SelectedItems.Count}" />
                         <Button x:Name="bDeleteGadget" Content="Delete" HorizontalAlignment="Left" VerticalAlignment="Bottom" 
-                                Click="bDeleteGadget_Click" IsEnabled="{Binding ElementName=GadgetGrid, Path=SelectedItems.Count}" />
+                                Command="{Binding DeleteCommand}" CommandParameter="{Binding ElementName=GadgetGrid, Path=SelectedItem}"
+                                IsEnabled="{Binding ElementName=GadgetGrid, Path=SelectedItems.Count}" />
                     </StackPanel>
                 </StackPanel>
             </TabItem>
             <TabItem Header="Loans">
-                <DataGrid Name="LoanGrid" ItemsSource="{Binding LoanViewModel.Loans}" AutoGenerateColumns="False" IsReadOnly="True" >
+                <DataGrid Name="LoanGrid" ItemsSource="{Binding Loans}" AutoGenerateColumns="False" IsReadOnly="True" >
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="1*"/>
                         <DataGridTextColumn Header="Customer" Width="5*" SortMemberPath="Customer.Name">
