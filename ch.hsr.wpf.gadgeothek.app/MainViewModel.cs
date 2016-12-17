@@ -5,6 +5,9 @@ using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Input;
 using ch.hsr.wpf.gadgeothek.service;
+using System.Threading.Tasks;
+using System.Threading;
+using System.Windows.Threading;
 
 namespace ch.hsr.wpf.gadgeothek.app
 {
@@ -19,20 +22,24 @@ namespace ch.hsr.wpf.gadgeothek.app
 
         public MainViewModel(String server)
         {
-            ReloadGadgetList();
-            ReloadLoanList();
-        }
-
-        private void ReloadLoanList()
-        {
-            List<Loan> list = Service.GetAllLoans();
-            Loans = new ObservableCollection<Loan>(list);
-        }
-
-        public static void ReloadGadgetList()
-        {
-            List<Gadget> list = Service.GetAllGadgets();
-            Gadgets = new ObservableCollection<Gadget>(list);
+            Gadgets = new ObservableCollection<Gadget>(Service.GetAllGadgets());
+            Loans = new ObservableCollection<Loan>(Service.GetAllLoans());
+            Reservations = new ObservableCollection<Reservation>(Service.GetAllReservations());
+            Task.Run(() =>
+            {
+                while (true)
+                {
+                    Console.WriteLine("------------------Update Loans");
+                    Thread.Sleep(3000);
+                    List<Loan> list = Service.GetAllLoans();
+                    Application.Current.Dispatcher.BeginInvoke(
+                        DispatcherPriority.Background,
+                        new Action(() => {
+                            Loans.Clear();
+                            list.ForEach(Loans.Add);
+                        }));
+                }
+            });
         }
 
         public static void Delete(Gadget gadget)

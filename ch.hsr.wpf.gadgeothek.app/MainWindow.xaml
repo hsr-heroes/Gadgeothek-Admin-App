@@ -11,7 +11,7 @@
         WindowStartupLocation="CenterScreen" >
     <Grid>
         <TabControl>
-            <TabItem Header="Gadgets">
+            <TabItem Header="Gadgets" x:Name="GadgetsTab">
                 <StackPanel Orientation="Vertical" >
                     <DataGrid Name="GadgetGrid"  ItemsSource="{Binding Gadgets}" AutoGenerateColumns="False" IsReadOnly="True">
                         <DataGrid.Columns>
@@ -34,7 +34,7 @@
                     </StackPanel>
                 </StackPanel>
             </TabItem>
-            <TabItem Header="Loans">
+            <TabItem Header="Loans" x:Name="LoansTab" >
                 <DataGrid Name="LoanGrid" ItemsSource="{Binding Loans}" AutoGenerateColumns="False" IsReadOnly="True" >
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="1*"/>
