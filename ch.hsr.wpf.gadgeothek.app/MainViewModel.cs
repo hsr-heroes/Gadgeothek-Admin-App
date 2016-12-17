@@ -15,6 +15,7 @@ namespace ch.hsr.wpf.gadgeothek.app
     {
         public static ObservableCollection<Gadget> Gadgets { get; set; }
         public static ObservableCollection<Loan> Loans { get; set; }
+        public static ObservableCollection<Reservation> Reservations { get; set; }
         public ICommand DeleteCommand { get; set; } = new RelayCommand<Gadget>((x) => Delete(x), (x) => true);
         public ICommand AddCommand { get; set; } = new RelayCommand<Gadget>((x) => AddEdit(new Gadget()), (x) => true);
         public ICommand EditCommand { get; set; } = new RelayCommand<Gadget>((x) => AddEdit(x), (x) => true);
@@ -37,6 +38,21 @@ namespace ch.hsr.wpf.gadgeothek.app
                         new Action(() => {
                             Loans.Clear();
                             list.ForEach(Loans.Add);
+                        }));
+                }
+            });
+            Task.Run(() =>
+            {
+                while (true)
+                {
+                    Console.WriteLine("------------------Update Reservations");
+                    Thread.Sleep(3000);
+                    List<Reservation> list = Service.GetAllReservations();
+                    Application.Current.Dispatcher.BeginInvoke(
+                        DispatcherPriority.Background,
+                        new Action(() => {
+                            Reservations.Clear();
+                            list.ForEach(Reservations.Add);
                         }));
                 }
             });

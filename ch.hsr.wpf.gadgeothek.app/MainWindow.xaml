@@ -60,6 +60,33 @@
                     </DataGrid.Columns>
                 </DataGrid>
             </TabItem>
+            <TabItem Header="Reservations" x:Name="ReservationsTab" >
+                <DataGrid Name="ReservationGrid" ItemsSource="{Binding Reservations}" AutoGenerateColumns="False" IsReadOnly="True" >
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="1*"/>
+                        <DataGridTextColumn Header="Customer" Width="5*" SortMemberPath="Customer.Name">
+                            <DataGridTextColumn.Binding>
+                                <MultiBinding StringFormat="{}{0} ({1})">
+                                    <Binding Path="Customer.Name" />
+                                    <Binding Path="Customer.Email" />
+                                </MultiBinding>
+                            </DataGridTextColumn.Binding>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Header="Gadget" Width="5*" SortMemberPath="Gadget.Name">
+                            <DataGridTextColumn.Binding>
+                                <MultiBinding StringFormat="{}{0} ({1})">
+                                    <Binding Path="Gadget.Name" />
+                                    <Binding Path="Gadget.Manufacturer" />
+                                </MultiBinding>
+                            </DataGridTextColumn.Binding>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Header="Reservation Date" Binding="{Binding ReservationDate}" Width="4*" />
+                        <DataGridCheckBoxColumn Header="Finished" Binding="{Binding Finished}" Width="2*" />
+                        <DataGridTextColumn Header="Wait Pos." Binding="{Binding WaitingPosition}" Width="2*" />
+                        <DataGridCheckBoxColumn Header="Is Ready?" Binding="{Binding IsReady}" Width="2*" />
+                    </DataGrid.Columns>
+                </DataGrid>
+            </TabItem>
         </TabControl>
 
     </Grid>
