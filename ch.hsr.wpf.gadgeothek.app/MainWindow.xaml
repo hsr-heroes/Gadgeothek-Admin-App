@@ -87,6 +87,32 @@
                     </DataGrid.Columns>
                 </DataGrid>
             </TabItem>
+            <TabItem Header="Settings" x:Name="SettingsTab" >
+                <Grid Grid.Column="3">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="2*" />
+                        <ColumnDefinition Width="1*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <Label Grid.Row="1">Server Address</Label>
+                    <ComboBox Grid.Column="1" Grid.Row="1" SelectedValue="{Binding ServerAddress}" SelectedValuePath="Content">
+                        <ComboBoxItem>http://mge1.dev.ifs.hsr.ch/</ComboBoxItem>
+                        <ComboBoxItem>http://mge2.dev.ifs.hsr.ch/</ComboBoxItem>
+                        <ComboBoxItem>http://mge3.dev.ifs.hsr.ch/</ComboBoxItem>
+                        <ComboBoxItem>http://mge4.dev.ifs.hsr.ch/</ComboBoxItem>
+                        <ComboBoxItem>http://mge5.dev.ifs.hsr.ch/</ComboBoxItem>
+                        <ComboBoxItem>http://mge6.dev.ifs.hsr.ch/</ComboBoxItem>
+                        <ComboBoxItem>http://mge7.dev.ifs.hsr.ch/</ComboBoxItem>
+                        <ComboBoxItem>http://mge8.dev.ifs.hsr.ch/</ComboBoxItem>
+                    </ComboBox>
+                </Grid>
+            </TabItem>
         </TabControl>
 
     </Grid>

@@ -19,10 +19,33 @@ namespace ch.hsr.wpf.gadgeothek.app
         public ICommand DeleteCommand { get; set; } = new RelayCommand<Gadget>((x) => Delete(x), (x) => true);
         public ICommand AddCommand { get; set; } = new RelayCommand<Gadget>((x) => AddEdit(new Gadget()), (x) => true);
         public ICommand EditCommand { get; set; } = new RelayCommand<Gadget>((x) => AddEdit(x), (x) => true);
-        public static LibraryAdminService Service = new LibraryAdminService("http://mge5.dev.ifs.hsr.ch/");
+        public static LibraryAdminService Service;
+
+        private static string _serverAddress;
+        public static string ServerAddress
+        {
+            get { return _serverAddress; }
+            set
+            {
+                Service = new LibraryAdminService(value);
+                _serverAddress = value;
+                Task.Run(() =>
+                {
+                    Console.WriteLine("------------------Update Gadgets");
+                    List<Gadget> list = Service.GetAllGadgets();
+                    Application.Current.Dispatcher.BeginInvoke(
+                        DispatcherPriority.Background,
+                        new Action(() => {
+                            Gadgets.Clear();
+                            list.ForEach(Gadgets.Add);
+                        }));
+                });
+            }
+        }
 
         public MainViewModel(String server)
         {
+            ServerAddress = server;
             Gadgets = new ObservableCollection<Gadget>(Service.GetAllGadgets());
             Loans = new ObservableCollection<Loan>(Service.GetAllLoans());
             Reservations = new ObservableCollection<Reservation>(Service.GetAllReservations());

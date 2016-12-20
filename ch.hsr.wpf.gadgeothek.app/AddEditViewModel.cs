@@ -12,8 +12,6 @@ namespace ch.hsr.wpf.gadgeothek.app
     public class AddEditViewModel
     {
         public ICommand SaveCommand { get; set; } = new RelayCommand<Window>((x) => Save(x), (x) => CanSave(Gadget));
-
-        public static LibraryAdminService Service = new LibraryAdminService("http://mge5.dev.ifs.hsr.ch/");
         public static Gadget OriginalGadget { get; set; }
         public static Gadget Gadget { get; set; }
         private static bool IsNew { get; set; }
@@ -64,7 +62,7 @@ namespace ch.hsr.wpf.gadgeothek.app
 
         private static string GetNewGadgetID()
         {
-            return (Service.GetAllGadgets().Max(x => x.InventoryNumber != null ? Int32.Parse(x.InventoryNumber) : 0) + 1).ToString();
+            return (MainViewModel.Service.GetAllGadgets().Max(x => x.InventoryNumber != null ? Int32.Parse(x.InventoryNumber) : 0) + 1).ToString();
         }
     }
 }
