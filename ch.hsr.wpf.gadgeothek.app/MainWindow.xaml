@@ -18,7 +18,7 @@
                             <DataGridTextColumn Header="InvNr." Binding="{Binding InventoryNumber}" Width="1*" SortDirection="Ascending"/>
                             <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="3*"/>
                             <DataGridTextColumn Header="Manufacturer" Binding="{Binding Manufacturer}" Width="3*"/>
-                            <DataGridTextColumn Header="Price" Binding="{Binding Price}" Width="2*"/>
+                            <DataGridTextColumn Header="Price" Binding="{Binding Price, StringFormat=c}" Width="2*"/>
                             <DataGridTextColumn Header="Condition" Binding="{Binding Condition}" Width="2*"/>
                         </DataGrid.Columns>
                     </DataGrid>

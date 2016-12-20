@@ -26,8 +26,8 @@ namespace ch.hsr.wpf.gadgeothek.app
 
 
         public static bool CanSave(Gadget gadget) => 
-            gadget.Manufacturer != String.Empty &&
-            gadget.Name != String.Empty &&
+            gadget.Manufacturer != null &&
+            gadget.Name != null &&
             gadget.Price >= 0;
         public static void Save(Window win)
         {
