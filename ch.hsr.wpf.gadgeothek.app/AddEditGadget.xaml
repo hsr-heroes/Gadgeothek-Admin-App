@@ -14,7 +14,7 @@
         WindowStartupLocation="CenterScreen" >
     <Window.Resources>
         <ObjectDataProvider x:Key="conditions"
-       MethodName="GetValues" ObjectType="{x:Type sys:Enum}">
+            MethodName="GetValues" ObjectType="{x:Type sys:Enum}">
             <ObjectDataProvider.MethodParameters>
                 <x:Type TypeName="dom:Condition"/>
             </ObjectDataProvider.MethodParameters>
@@ -47,7 +47,8 @@
                 <TextBox Grid.Column="1" Grid.Row="2" Text="{Binding Gadget.Name}" Controls:TextBoxHelper.Watermark="e.g. Galaxy S7" />
                 <TextBox Grid.Column="1" Grid.Row="3" Text="{Binding Gadget.Manufacturer}" Controls:TextBoxHelper.Watermark="Samsung" />
                 <TextBox Grid.Column="1" Grid.Row="4" Text="{Binding Gadget.Price}" />
-                <ComboBox Grid.Column="1" Grid.Row="5" Name="ConditionComboBox" Margin="5" HorizontalAlignment="Stretch" SelectedIndex="0" ItemsSource="{Binding Source={StaticResource conditions}}" />
+                <ComboBox Grid.Column="1" Grid.Row="5" Name="ConditionComboBox" Margin="5" HorizontalAlignment="Stretch" 
+                          ItemsSource="{Binding Source={StaticResource conditions}}" SelectedItem="{Binding Gadget.Condition}" />
             </Grid>
             <StackPanel Orientation="Horizontal" >
                 <Button x:Name="bSaveGadget" Content="Save" HorizontalAlignment="Left" VerticalAlignment="Bottom"
