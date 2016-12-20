@@ -52,8 +52,10 @@
             </Grid>
             <StackPanel Orientation="Horizontal" >
                 <Button x:Name="bSaveGadget" Content="Save" HorizontalAlignment="Left" VerticalAlignment="Bottom"
-                        Command="{Binding SaveCommand}" CommandParameter="{Binding ElementName=AddEditWindow}" />
-                <Button x:Name="bCancelGadget" Content="Cancel" HorizontalAlignment="Left" VerticalAlignment="Bottom" IsCancel="True" />
+                        Command="{Binding SaveCommand}" CommandParameter="{Binding ElementName=AddEditWindow}"
+                        Padding="20,0" Margin="40,40,20,40"/>
+                <Button x:Name="bCancelGadget" Content="Cancel" HorizontalAlignment="Left" VerticalAlignment="Bottom" IsCancel="True"
+                        Padding="20,0" Margin="20,40,40,40" />
             </StackPanel>
         </StackPanel>
     </Grid>

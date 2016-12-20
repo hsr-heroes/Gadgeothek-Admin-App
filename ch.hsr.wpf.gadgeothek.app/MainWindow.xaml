@@ -24,13 +24,13 @@
                     </DataGrid>
                     <StackPanel Orientation="Horizontal" >
                         <Button x:Name="bAddGadget" Content="Add" HorizontalAlignment="Left" VerticalAlignment="Bottom"
-                                Command="{Binding AddCommand}" />
+                                Command="{Binding AddCommand}" Padding="20,0" Margin="10,20" />
                         <Button x:Name="bEditGadget" Content="Edit" HorizontalAlignment="Left" VerticalAlignment="Bottom" 
                                 Command="{Binding EditCommand}" CommandParameter="{Binding ElementName=GadgetGrid, Path=SelectedItem}"
-                                IsEnabled="{Binding ElementName=GadgetGrid, Path=SelectedItems.Count}" />
+                                IsEnabled="{Binding ElementName=GadgetGrid, Path=SelectedItems.Count}"  Padding="20,0" Margin="10,20" />
                         <Button x:Name="bDeleteGadget" Content="Delete" HorizontalAlignment="Left" VerticalAlignment="Bottom" 
                                 Command="{Binding DeleteCommand}" CommandParameter="{Binding ElementName=GadgetGrid, Path=SelectedItem}"
-                                IsEnabled="{Binding ElementName=GadgetGrid, Path=SelectedItems.Count}" />
+                                IsEnabled="{Binding ElementName=GadgetGrid, Path=SelectedItems.Count}"  Padding="20,0" Margin="10,20" />
                     </StackPanel>
                 </StackPanel>
             </TabItem>
