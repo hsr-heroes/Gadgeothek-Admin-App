@@ -31,7 +31,7 @@ namespace ch.hsr.wpf.gadgeothek.app
                 _serverAddress = value;
                 Task.Run(() =>
                 {
-                    Console.WriteLine("------------------Update Gadgets");
+                    Console.WriteLine("Update Gadgets");
                     List<Gadget> list = Service.GetAllGadgets();
                     Application.Current.Dispatcher.BeginInvoke(
                         DispatcherPriority.Background,
@@ -53,7 +53,7 @@ namespace ch.hsr.wpf.gadgeothek.app
             {
                 while (true)
                 {
-                    Console.WriteLine("------------------Update Loans");
+                    Console.WriteLine("Update Loans");
                     Thread.Sleep(3000);
                     List<Loan> list = Service.GetAllLoans();
                     Application.Current.Dispatcher.BeginInvoke(
@@ -68,7 +68,7 @@ namespace ch.hsr.wpf.gadgeothek.app
             {
                 while (true)
                 {
-                    Console.WriteLine("------------------Update Reservations");
+                    Console.WriteLine("Update Reservations");
                     Thread.Sleep(3000);
                     List<Reservation> list = Service.GetAllReservations();
                     Application.Current.Dispatcher.BeginInvoke(
